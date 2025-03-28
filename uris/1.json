@@ -1,0 +1,14 @@
+{
+    "name": "DragonFlo Collection NFT 1",
+    "description": "First NFT Collection by Alberto Flores",
+    "image": "ipfs://",
+    "attributes": [
+        { "trait_type": "Rarity", "value": "Epic" },
+        { "trait_type": "Element", "value": "Water" },
+        { "trait_type": "Scale Color", "value": "Blue" },
+        { "trait_type": "Wingspan", "value": "Large" },
+        { "trait_type": "Horns", "value": "Long" }
+    ]
+}
+
+
