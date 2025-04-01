@@ -1,7 +1,7 @@
 # 🎨 DragonNFTCollection
 
 ## 📌 **Description**
-The **DragonNFTCollection** is a Solidity-based smart contract for an ERC-721 NFT collection. It allows users to mint unique NFTs until the maximum supply is reached. The contract is built using **OpenZeppelin** for security and standard compliance and tested with **Foundry**.
+The **DragonNFTCollection** is a Solidity-based smart contract for an ERC-721 NFT collection. It allows users to mint unique NFTs until the maximum supply is reached (only one per wallet). The contract is built using **OpenZeppelin** for security and standard compliance and tested with **Foundry**.
 
 You can see an example of the deployed contract here: https://arbiscan.io/address/0xaffc28fd8dbdfbd17e6d47a98aa2b7a73ae39c33
 
@@ -11,7 +11,7 @@ You can see an example of the deployed contract here: https://arbiscan.io/addres
 | **Feature** | **Description** |
 |------------|----------------|
 | 🎭 **ERC-721 Standard** | Implements the ERC-721 standard for non-fungible tokens. |
-| 🎨 **NFT Minting** | Users can mint NFTs until the maximum collection supply is reached. |
+| 🎨 **NFT Minting** | Users can mint one NFT per wallet until the maximum collection supply is reached. |
 | 🔗 **Base URI** | Metadata URIs are structured as `<baseURI><tokenId>.json`. |
 | 📜 **Event Emission** | Emits `MintNFT`, `MintFeeUpdated`, and `FundsWithdrawn` events. |
 
