@@ -29,9 +29,14 @@ contract DragonNFTCollection is ERC721, Ownable {
 
     // Constructor
 
-    constructor(string memory name_, string memory symbol_, uint256 NFTCollectionSupply_, string memory baseURI_,uint256 mintFee_,address owner_)
-        ERC721(name_, symbol_) Ownable(owner_)
-    {
+    constructor(
+        string memory name_,
+        string memory symbol_,
+        uint256 NFTCollectionSupply_,
+        string memory baseURI_,
+        uint256 mintFee_,
+        address owner_
+    ) ERC721(name_, symbol_) Ownable(owner_) {
         NFTCollectionSupply = NFTCollectionSupply_;
         baseUri = baseURI_;
         mintFee = mintFee_;
@@ -41,7 +46,7 @@ contract DragonNFTCollection is ERC721, Ownable {
 
     function safeMint() external payable {
         require(currentTokenId < NFTCollectionSupply, "Max Supply reached");
-        require(msg.value == mintFee,"Invalid amount");
+        require(msg.value == mintFee, "Invalid amount");
         require(!hasMinted[msg.sender], "Wallet has already minted");
         _safeMint(msg.sender, currentTokenId);
         uint256 actualId = currentTokenId;

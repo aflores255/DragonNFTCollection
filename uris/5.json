@@ -1,7 +1,7 @@
 {
     "name": "DragonFlo Collection NFT 5",
     "description": "DragonFlo NFT Collection by Alberto Flores",
-    "image": "ipfs://",
+    "image": "ipfs://bafybeidxxhqzdcexklztcjfdvwbgwpji352qgtppfgh4hbsoifkytevja4",
     "attributes": [
         { "trait_type": "Rarity", "value": "Uncommon" },
         { "trait_type": "Element", "value": "Lightning" },
