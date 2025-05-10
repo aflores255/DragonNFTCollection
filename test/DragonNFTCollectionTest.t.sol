@@ -7,7 +7,8 @@ pragma solidity 0.8.28;
 import "forge-std/Test.sol";
 import "../src/DragonNFTCollection.sol";
 
-//3. Contract
+//3. Contracts
+
 contract DragonNFTCollectionTest is Test {
     DragonNFTCollection nftCollection;
     address user = vm.addr(1);
@@ -109,6 +110,7 @@ contract DragonNFTCollectionTest is Test {
         vm.stopPrank();
     }
 
+    // Test proper token URI
     function testTokenURI() public {
         uint256 userBalance = 1 ether;
         vm.startPrank(user);

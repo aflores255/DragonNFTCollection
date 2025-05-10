@@ -1,9 +1,7 @@
-# 🎨 DragonNFTCollection
+# 🎨 ERC-721 DragonNFTCollection
 
 ## 📌 **Description**
-The **DragonNFTCollection** is a Solidity-based smart contract for an ERC-721 NFT collection. It allows users to mint unique NFTs until the maximum supply is reached (only one per wallet). The contract is built using **OpenZeppelin** for security and standard compliance and tested with **Foundry**.
-
-You can see an example of the deployed contract here: https://arbiscan.io/address/0xaffc28fd8dbdfbd17e6d47a98aa2b7a73ae39c33
+**DragonNFTCollection** is a feature-rich and secure NFT smart contract developed in Solidity using the **Foundry** framework. It enables the creation of a fully compliant **ERC-721** collection with a fixed total supply, structured metadata URIs, and enforced minting limits per wallet to ensure fair distribution. Each mint requires a fee, introducing value to the tokens and enabling revenue generation for the project. Collected fees are managed by the contract’s **owner**, allowing centralized control for funding development, marketing, or community rewards. The contract is deployed on the **Arbitrum** network, ensuring fast, low-cost transactions for both creators and collectors.
 
 ---
 
@@ -18,6 +16,12 @@ You can see an example of the deployed contract here: https://arbiscan.io/addres
 ---
 
 ## 📜 **Contract Details**
+
+### 🏗️ Constructor
+
+| **Constructor** | **Description** |
+|----------------|----------------|
+| `constructor(string memory name_, string memory symbol_, uint256 NFTCollectionSupply_, string memory baseURI_, uint256 mintFee_, address owner_)` | Initializes the NFT collection with name, symbol, max supply, metadata URI, minting fee, and assigns contract ownership for fee management. |
 
 ### 📡 **Events**
 | **Event** | **Description** |
@@ -37,6 +41,63 @@ You can see an example of the deployed contract here: https://arbiscan.io/addres
 
 ---
 
+## 🚀 Deployment & Usage
+
+This section demonstrates the functionality of the `DragonNFTCollection` smart contract, deployed on the **Arbitrum One** network. It includes steps to mint NFTs using the live contract and manage the collected minting fees.
+
+🔗 **Deployed Contract:** [0xaffc28fd8dbdfbd17e6d47a98aa2b7a73ae39c33 on Arbiscan](https://arbiscan.io/address/0xaffc28fd8dbdfbd17e6d47a98aa2b7a73ae39c33)
+
+---
+
+### 🐉 How to Mint a Dragon NFT
+
+1. **Go to the Arbiscan contract page**:  
+   [Write Contract → Connect to Web3](https://arbiscan.io/address/0xaffc28fd8dbdfbd17e6d47a98aa2b7a73ae39c33#writeContract)
+
+2. **Connect your wallet** (e.g. MetaMask on Arbitrum One network).
+
+3. **Locate `safeMint()` function**:
+   - Enter the required amount of ETH (mint fee) into the "Value" field (e.g., `1` wei of Ether).
+   - Click "Write" and approve the transaction.
+
+4. **Check Ownership and Metadata**:
+   - Switch to **Read Contract** tab.
+   - Use `balanceOf(address)` to confirm you own a token.
+   - Use `tokenURI(tokenId)` to get the metadata URI.
+
+   ✅ Example:
+   - Token ID: `0`
+   - View token URI: [tokenURI(0)]
+
+---
+
+### 💰 Fee Management (Owner Only)
+
+The contract owner can withdraw the collected minting fees by calling:
+
+- `withdraw()`
+
+This function transfers the entire contract balance to the owner's wallet.  
+Only the `owner` address (set during deployment) can execute this function.
+
+---
+
+### 🔗 Example Transaction
+
+Example of a successful mint:
+
+🔹 [Tx Hash: 0x244e...](https://arbiscan.io/tx/0x244e8772c8d11e1b89b3711192d498b844196d392e027c1eebe71eaddd36d42f)  
+- Status: Success  
+- Value sent: `1 wei`  
+- Token ID: `0`  
+- Result: NFT minted and registered on-chain.
+
+---
+
+🧭 Minted NFTs can be viewed and traded on supported Arbitrum marketplaces like [OpenSea](https://opensea.io/) once metadata is indexed.
+
+---
+
 ## 🧪 **Testing with Foundry**
 The contract has been thoroughly tested using Foundry. The test suite verifies minting, supply limits, and metadata retrieval.
 
@@ -53,18 +114,15 @@ The contract has been thoroughly tested using Foundry. The test suite verifies m
 
 ---
 
-## 🛠️ **How to Use**
+### 📊 Test Coverage
 
-### 🔧 **Prerequisites**
-- Install **Foundry**: [Installation Guide](https://book.getfoundry.sh/)
-- Ensure you have an Ethereum wallet and testnet ETH if deploying.
+The following table summarizes the unit test coverage for the `DragonNFTCollection` smart contract. All lines, statements, and functions are fully covered. The only uncovered branch corresponds to the **successful path of the `call` used in `withdrawFunds()`**, which is tested through a failure case but not explicitly verified in a success scenario.
 
-### 🚀 **Deployment Steps**
-1. Clone the project repository.
-2. Navigate to the project folder.
-3. Install dependencies. 
-4. Run the tests.
-5. Deploy the contract.
+| **File**                      | **% Lines**     | **% Statements** | **% Branches** | **% Functions** |
+|------------------------------|-----------------|------------------|----------------|-----------------|
+| `src/DragonNFTCollection.sol`| 100.00% (28/28) | 100.00% (25/25)  | 90.00% (9/10)  | 100.00% (6/6)   |
+
+---
 
 ### 📄 License
 This project is UNLICENSED. Modify it as needed for your use case!
