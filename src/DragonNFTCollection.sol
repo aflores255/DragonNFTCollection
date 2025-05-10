@@ -27,8 +27,15 @@ contract DragonNFTCollection is ERC721, Ownable {
     event MintFeeUpdated(uint256 newFee);
     event FundsWithdrawn(address owner, uint256 amount);
 
-    // Constructor
-
+    /**
+     * @notice Constructor of the DragonNFTCollection contract.
+     * @param name_ Name of the NFT collection.
+     * @param symbol_ Symbol of the NFT collection.
+     * @param NFTCollectionSupply_ Maximum number of NFTs allowed to be minted.
+     * @param baseURI_ Base URI used to generate token metadata URIs.
+     * @param mintFee_ Fee in wei required to mint a single NFT.
+     * @param owner_ Address that will be assigned as the contract owner.
+     */
     constructor(
         string memory name_,
         string memory symbol_,
@@ -44,6 +51,9 @@ contract DragonNFTCollection is ERC721, Ownable {
 
     // Functions
 
+    /**
+     * @notice Allows users to mint one NFT per wallet, enforcing fee and supply restrictions.
+     */
     function safeMint() external payable {
         require(currentTokenId < NFTCollectionSupply, "Max Supply reached");
         require(msg.value == mintFee, "Invalid amount");
@@ -55,11 +65,18 @@ contract DragonNFTCollection is ERC721, Ownable {
         emit MintNFT(msg.sender, actualId);
     }
 
+    /**
+     * @notice Updates the minting fee required to mint a new NFT.
+     * @param newFee The new minting fee (in wei) to be applied.
+     */
     function setMintFee(uint256 newFee) external onlyOwner {
         mintFee = newFee;
         emit MintFeeUpdated(newFee);
     }
 
+    /**
+     * @notice Withdraws all ETH from the contract to the owner's address.
+     */
     function withdrawFunds() external onlyOwner {
         uint256 balance = address(this).balance;
         require(balance > 0, "No funds");
@@ -68,10 +85,19 @@ contract DragonNFTCollection is ERC721, Ownable {
         emit FundsWithdrawn(owner(), balance);
     }
 
+    /**
+     * @notice Returns the base URI used for computing {tokenURI}.
+     * @return The base URI string set during contract deployment.
+     */
     function _baseURI() internal view virtual override returns (string memory) {
         return baseUri;
     }
 
+    /**
+     * @notice Returns the metadata URI for a given token ID.
+     * @param tokenId The ID of the token whose URI is being queried.
+     * @return A string representing the full metadata URI for the token.
+     */
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         _requireOwned(tokenId);
 
